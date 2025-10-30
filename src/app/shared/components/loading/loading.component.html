@@ -1,0 +1,19 @@
+@if (fullscreen){
+<div class="loading-overlay">
+  <mat-progress-spinner
+    [diameter]="diameter"
+    [color]="color"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
+}
+@else {
+<mat-progress-spinner
+  [diameter]="diameter"
+  [color]="color"
+  mode="indeterminate">
+</mat-progress-spinner>
+}
+
+

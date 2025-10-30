@@ -1,0 +1,93 @@
+login.component.html
+<div class="property-container">
+  <mat-card class="property-card">
+    <h2 class="property-title">{{id() ? 'Edit Property':'Add Property'}}</h2>
+    <!-- <form [formGroup]="propertyForm()" novalidate (ngSubmit)="onSubmit()"> -->
+
+      <mat-form-field appearance="fill" class="full-width">
+   <mat-label>Host</mat-label>
+    <mat-select formControlName="hostId">
+      <mat-option [value]="0">Select Host</mat-option>
+      <!-- @for (host of hosts();track host.id){
+        <mat-option [value]="host.id">{{host.fullName}}</mat-option>
+      } -->
+      
+    </mat-select>
+    <mat-error *ngIf="propertyForm().controls['hostId'].hasError('required')">
+          Host is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="propertyForm().controls['hostId'].hasError('min')">
+          Host is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>  
+
+      <!-- Name -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Name" />
+        <mat-error *ngIf="propertyForm().controls['name'].hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>  
+      
+      <!-- Location -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" placeholder="Location" />
+        <mat-error *ngIf="propertyForm().controls['location'].hasError('required')">
+          Location is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>  
+
+      <!-- Status -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+            <mat-option [value]="''">Select Status</mat-option>
+            <mat-option value="0">Inactive</mat-option>
+            <mat-option value="1">Active</mat-option>
+        </mat-select>
+        <mat-error *ngIf="propertyForm().controls['status'].hasError('required')">
+          Status is <strong>required</strong>
+        </mat-error>
+       </mat-form-field>
+
+      <!-- Price Per Night -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Price per Night</mat-label>
+        <input matInput formControlName="pricePerNight" placeholder="Price per Night" />
+        <mat-error *ngIf="propertyForm().controls['pricePerNight'].hasError('required')">
+          Price per Night is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="propertyForm().controls['pricePerNight'].hasError('min')">
+          Price per Night must be at least 1.0
+        </mat-error>        
+        <mat-error *ngIf="propertyForm().controls['pricePerNight'].hasError('pattern')">
+          Price per Night must be a decimal number
+        </mat-error>
+      </mat-form-field>    
+
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+      >
+        {{ isSubmitting() ? '...' : 'Submit' }}
+      </button>
+
+      <!-- Signup Link -->
+      <!-- <button
+        mat-button
+        mat-raised-button
+        type="button"
+        class="full-width"
+        (click)="closeDialog()"
+      >
+        Close
+      </button> -->
+    <!-- </form> -->
+  </mat-card>
+</div>

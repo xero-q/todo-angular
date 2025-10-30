@@ -1,0 +1,91 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <h2 class="signup-title">Sign Up</h2>
+
+    <form [formGroup]="signupForm" novalidate (ngSubmit)="onSubmit()">
+
+      <!-- Username -->
+      <mat-form-field appearance="fill" class="full-width mb-3">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="johndoe" />
+        <mat-error *ngIf="signupForm.controls['username'].hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="fill" class="full-width mb-3">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword() ? 'password' : 'text'"
+          formControlName="password"
+          placeholder="yourpassword"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword.set(!hidePassword())"
+          [attr.aria-label]="hidePassword() ? 'Hide password' : 'Show password'"
+          [attr.aria-pressed]="!hidePassword()"
+        >
+          <mat-icon>{{ hidePassword() ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Confirm Password -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          matInput
+          [type]="hideConfirmPassword() ? 'password' : 'text'"
+          formControlName="passwordConfirmation"
+          placeholder="yourpasswordconfirmation"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hideConfirmPassword.set(!hideConfirmPassword())"
+          [attr.aria-label]="hideConfirmPassword() ? 'Hide password' : 'Show password'"
+          [attr.aria-pressed]="!hideConfirmPassword()"
+        >
+          <mat-icon>{{ hideConfirmPassword() ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="!signupForm.controls['password'].hasError('required') &&
+                         signupForm.controls['passwordConfirmation'].hasError('required')">
+          Confirming your password is <strong>required</strong>
+        </mat-error>
+        
+      </mat-form-field>
+      <mat-error class="mb-2" *ngIf="signupForm.errors?.['passwordMismatch'] &&
+                         !signupForm.get('passwordConfirmation')?.errors?.['required'] &&
+                         signupForm.touched">
+          Passwords do not match
+        </mat-error>
+
+      <!-- Buttons -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width mt-2 mb-2"
+      >
+        Sign Up
+      </button>
+
+      <button
+        mat-button
+        type="button"
+        class="full-width"
+        (click)="goToLogin()"
+      >
+        Return to Login
+      </button>
+    </form>
+  </mat-card>
+</div>
