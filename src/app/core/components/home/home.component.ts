@@ -4,7 +4,6 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   inject,
   signal,
-  ViewChild,
 } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';

@@ -81,7 +81,7 @@ export class TodoListComponent implements OnInit {
   createTodo(){
     const data = {};
     
-    let dialogRef = this.dialog.open(TodoFormComponent, {
+    const dialogRef = this.dialog.open(TodoFormComponent, {
       width: '25rem',
       height: 'auto',
       autoFocus: false,
@@ -100,7 +100,7 @@ export class TodoListComponent implements OnInit {
   editTodo(todoId: number){
    const data = {todoId};
     
-    let dialogRef = this.dialog.open(TodoFormComponent, {
+    const dialogRef = this.dialog.open(TodoFormComponent, {
       width: '25rem',
       height: 'auto',
       autoFocus: false,

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, inject, input, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './todo-form.component.html',
   styleUrl: './todo-form.component.scss'
 })
-export class TodoFormComponent {
+export class TodoFormComponent implements AfterViewInit {
   private readonly dialogRef = inject(MatDialogRef<TodoFormComponent>);
   private readonly snackbar = inject(MatSnackBar);
   protected readonly isSubmitting = signal(false);
@@ -26,6 +26,8 @@ export class TodoFormComponent {
   private readonly fb = inject(FormBuilder);
 
   protected readonly todoId = signal<number | undefined>(undefined);
+
+  private readonly payload = inject(MAT_DIALOG_DATA) as { todoId: number };
 
   public readonly todoForm = signal(
     this.fb.group({
@@ -36,8 +38,8 @@ export class TodoFormComponent {
     })
   );
 
-  constructor(@Inject(MAT_DIALOG_DATA) public payload: {todoId:number}) {
-    this.todoId.set(payload.todoId);
+  constructor() {
+    this.todoId.set(this.payload.todoId);
   }
 
    ngAfterViewInit(){
