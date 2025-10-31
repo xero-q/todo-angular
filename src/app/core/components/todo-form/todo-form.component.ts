@@ -27,7 +27,7 @@ export class TodoFormComponent {
 
   protected readonly todoId = signal<number | undefined>(undefined);
 
-  protected readonly todoForm = signal(
+  public readonly todoForm = signal(
     this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
