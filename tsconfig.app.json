@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-, "src/app/core/components/property-form/property-form.componentts", "src/app/core/services/domain-eventsservice ts"  ],
+, "src/app/core/components/todo-form/property-form.componentts", "src/app/core/services/domain-eventsservice ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

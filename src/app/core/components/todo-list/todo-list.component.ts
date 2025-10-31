@@ -17,7 +17,7 @@ import { TodoFormComponent } from '../todo-form/todo-form.component';
 import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-todos',
+  selector: 'app-todo-list',
   imports: [MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -28,10 +28,10 @@ import { RouterLink, RouterModule } from "@angular/router";
     FormsModule,
     RouterModule,
     CommonModule, LoadingComponent, RouterLink],
-  templateUrl: './todos.component.html',
-  styleUrl: './todos.component.scss'
+  templateUrl: './todo-list.component.html',
+  styleUrl: './todo-list.component.scss'
 })
-export class TodosComponent implements OnInit {
+export class TodoListComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   private readonly snackbar = inject(MatSnackBar);
   private readonly todosService = inject(TodosService);

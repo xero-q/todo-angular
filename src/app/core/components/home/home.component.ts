@@ -13,11 +13,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { TodosComponent } from '../todos/todos.component';
+import { TodoListComponent } from '../todo-list/todo-list.component';
 
 @Component({
   selector: 'app-home',
-  imports: [TodosComponent, MatToolbarModule, MatIconModule,MatMenuModule, MatButtonModule,MatSidenavModule],
+  imports: [TodoListComponent, MatToolbarModule, MatIconModule,MatMenuModule, MatButtonModule,MatSidenavModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
