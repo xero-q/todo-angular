@@ -8,12 +8,12 @@ import {
 } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
-import {  TodosComponent } from '../properties/todos.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { TodosComponent } from '../todos/todos.component';
 
 @Component({
   selector: 'app-home',

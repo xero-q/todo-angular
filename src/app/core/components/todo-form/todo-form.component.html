@@ -1,0 +1,66 @@
+<div class="todo-container">
+  <mat-card class="todo-card">
+    <h2 class="todo-title">{{todoId() ? 'Edit Todo':'Add Todo'}}</h2>
+    <form [formGroup]="todoForm()" novalidate (ngSubmit)="onSubmit()">
+
+      <!-- Title -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="title" placeholder="Title" />
+        <mat-error *ngIf="todoForm().controls['title'].hasError('required')">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>  
+      
+      <!-- Location -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" placeholder="Description" />
+        <mat-error *ngIf="todoForm().controls['description'].hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>  
+
+      <!-- Due Date -->
+      <mat-form-field appearance="fill" class="full-width">
+     <mat-label>Due Date</mat-label>
+      <input matInput type="datetime-local" formControlName="dueDate" />
+    </mat-form-field>
+
+
+      <!-- Is Completed -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Is Completed</mat-label>
+        <mat-select formControlName="isCompleted">
+            <mat-option [value]="''">Select Is Completed</mat-option>
+            <mat-option value="0">NO</mat-option>
+            <mat-option value="1">YES</mat-option>
+        </mat-select>
+        <mat-error *ngIf="todoForm().controls['isCompleted'].hasError('required')">
+          IsCompleted is <strong>required</strong>
+        </mat-error>
+       </mat-form-field>        
+
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+      >
+        {{ isSubmitting() ? '...' : 'Submit' }}
+      </button>
+
+      <button
+        mat-button
+        mat-raised-button
+        type="button"
+        class="full-width"
+        (click)="closeDialog()"
+      >
+        Close
+      </button>
+    </form>
+  </mat-card>
+</div>

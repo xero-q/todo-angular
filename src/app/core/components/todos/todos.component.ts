@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 // import { PropertyFormComponent } from '../property-form/property-form.component';
 import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TodoFormComponent } from '../todo-form/todo-form.component';
 
 @Component({
   selector: 'app-todos',
@@ -33,7 +34,7 @@ export class TodosComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   private readonly snackbar = inject(MatSnackBar);
   private readonly todosService = inject(TodosService);
-  protected readonly displayedColumns = ['todoId','title','description','dueDate','isCompleted'];
+  protected readonly displayedColumns = ['todoId','title','description','dueDate','isCompleted','actions'];
   protected readonly dataSource = new MatTableDataSource<Todo>([]);
 
   totalItems = 0;
@@ -76,43 +77,43 @@ export class TodosComponent implements OnInit {
     this.loadData();
   }
 
-  // createProperty(){
-  //   const data = {};
+  createTodo(){
+    const data = {};
     
-  //   let dialogRef = this.dialog.open(PropertyFormComponent, {
-  //     width: '25rem',
-  //     height: 'auto',
-  //     autoFocus: false,
-  //     data,
-  //     panelClass: 'no-padding-dialog'
-  //   });
+    let dialogRef = this.dialog.open(TodoFormComponent, {
+      width: '25rem',
+      height: 'auto',
+      autoFocus: false,
+      data,
+      panelClass: 'no-padding-dialog'
+    });
 
-  //   dialogRef.updatePosition({ top: '100px' });
-  //   dialogRef.afterClosed().subscribe((msg) => {
-  //     if (msg) {
-  //       this.loadData();
-  //     }
-  //   });
-  // }
+    dialogRef.updatePosition({ top: '100px' });
+    dialogRef.afterClosed().subscribe((msg) => {
+      if (msg) {
+        this.loadData();
+      }
+    });
+  }
 
-  // editProperty(id: number){
-  //  const data = {id};
+  editTodo(todoId: number){
+   const data = {todoId};
     
-  //   let dialogRef = this.dialog.open(PropertyFormComponent, {
-  //     width: '25rem',
-  //     height: 'auto',
-  //     autoFocus: false,
-  //     data,
-  //     panelClass: 'no-padding-dialog'
-  //   });
+    let dialogRef = this.dialog.open(TodoFormComponent, {
+      width: '25rem',
+      height: 'auto',
+      autoFocus: false,
+      data,
+      panelClass: 'no-padding-dialog'
+    });
 
-  //   dialogRef.updatePosition({ top: '100px' });
-  //   dialogRef.afterClosed().subscribe((msg) => {
-  //     if (msg) {
-  //       this.loadData();
-  //     }
-  //   });
-  // }
+    dialogRef.updatePosition({ top: '100px' });
+    dialogRef.afterClosed().subscribe((msg) => {
+      if (msg) {
+        this.loadData();
+      }
+    });
+  }
 
   deleteTodo(todoId: number){
     if (confirm('Are you sure you want to delete this property?')){

@@ -30,9 +30,9 @@ export class TodosService {
     return this.httpClient.get<Pagination<Todo>>(`${this.apiUrl}/todos`, { params });
   }
 
-  // getOneProperty(id: number):Observable<Property>{
-  //     return this.httpClient.get<Property>(`${this.apiUrl}/properties/${id}`);
-  // }
+  getOneTodo(todoId: number):Observable<Todo>{
+      return this.httpClient.get<Todo>(`${this.apiUrl}/todos/${todoId}`);
+  }
 
   // createProperty(hostId:number,name:string,location:string,pricePerNight:number,status:number):Observable<Property>{
   //   const payload = {
