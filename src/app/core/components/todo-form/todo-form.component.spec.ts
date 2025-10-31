@@ -72,6 +72,9 @@ describe('TodoFormComponent Validation', () => {
     component = fixture.componentInstance;
     // Call detectChanges to initialize the component and the form signal
     fixture.detectChanges();
+
+    mockTodosService.createTodo.calls.reset();
+    mockTodosService.updateTodo.calls.reset();
   });
 
   it('should create and initialize the form', () => {
