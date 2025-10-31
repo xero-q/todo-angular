@@ -48,20 +48,19 @@ describe('TodoFormComponent Validation', () => {
       imports: [
         TodoFormComponent,
         ReactiveFormsModule,
-        CommonModule, // Added to satisfy component dependency
+        CommonModule, 
         MatInputModule, 
         MatButtonModule, 
         MatCardModule, 
         MatSelectModule, 
-        MatDialogModule, // Added to satisfy MatDialogRef dependency chain
-        MatSnackBarModule, // Added to satisfy MatSnackBar dependency chain
-        NoopAnimationsModule, // Required for Material modules
+        MatDialogModule, 
+        MatSnackBarModule, 
+        NoopAnimationsModule,
         RouterTestingModule
       ],
       providers: [
         FormBuilder,
         { provide: MatDialogRef, useValue: mockMatDialogRef },
-        // Use a default payload for creation mode to avoid calling getOneTodo
         { provide: MAT_DIALOG_DATA, useValue: { todoId: undefined } },
         { provide: MatSnackBar, useValue: mockMatSnackBar },
         { provide: TodosService, useValue: mockTodosService },
@@ -70,7 +69,6 @@ describe('TodoFormComponent Validation', () => {
 
     fixture = TestBed.createComponent(TodoFormComponent);
     component = fixture.componentInstance;
-    // Call detectChanges to initialize the component and the form signal
     fixture.detectChanges();
 
     mockTodosService.createTodo.calls.reset();
