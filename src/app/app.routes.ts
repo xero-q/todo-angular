@@ -7,22 +7,22 @@ import { TodoDetailComponent } from './core/components/todo-detail/todo-detail.c
 
 export const routes: Routes = [
   {
-          path: 'home',
-         component: HomeComponent,
-         canActivate:[AuthGuard]
+       path: 'home',
+       component: HomeComponent,
+       canActivate:[AuthGuard]
   },
    {
-          path: 'home/:id',
-         component: TodoDetailComponent,
-         canActivate:[AuthGuard]
+       path: 'home/:id',
+       component: TodoDetailComponent,
+       canActivate:[AuthGuard]
   },
   {
-          path: 'login',
-         component: LoginComponent
+       path: 'login',
+       component: LoginComponent
   },
    {
-          path: 'signup',
-         component: SignupComponent
+       path: 'signup',
+       component: SignupComponent
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
