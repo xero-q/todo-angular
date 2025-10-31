@@ -7,9 +7,11 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" placeholder="johndoe" />
-        <mat-error *ngIf="loginForm().controls['username'].hasError('required')">
+        @if (loginForm().controls['username'].hasError('required')){        
+        <mat-error>
           Username is <strong>required</strong>
         </mat-error>
+        }
       </mat-form-field>
 
       <!-- Password -->
@@ -21,9 +23,11 @@
           formControlName="password"
           placeholder="yourpassword"
         />
-        <mat-error *ngIf="loginForm().controls['password'].hasError('required')">
+        @if (loginForm().controls['password'].hasError('required')){        
+        <mat-error>
           Password is <strong>required</strong>
         </mat-error>
+        }
       </mat-form-field>
 
       <!-- Login Button -->

@@ -7,18 +7,22 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Name</mat-label>
         <input matInput formControlName="title" placeholder="Title" />
-        <mat-error *ngIf="todoForm().controls['title'].hasError('required')">
+        @if (todoForm().controls['title'].hasError('required')){        
+        <mat-error>
           Title is <strong>required</strong>
         </mat-error>
+        }
       </mat-form-field>  
       
       <!-- Location -->
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Description</mat-label>
         <input matInput formControlName="description" placeholder="Description" />
-        <mat-error *ngIf="todoForm().controls['description'].hasError('required')">
-          Description is <strong>required</strong>
-        </mat-error>
+        @if (todoForm().controls['description'].hasError('required')){        
+          <mat-error>
+           Description is <strong>required</strong>
+          </mat-error>
+        }
       </mat-form-field>  
 
       <!-- Due Date -->
@@ -37,11 +41,13 @@
             <mat-option value="0">NO</mat-option>
             <mat-option value="1">YES</mat-option>
         </mat-select>
-        <mat-error *ngIf="todoForm().controls['isCompleted'].hasError('required')">
+        @if (todoForm().controls['isCompleted'].hasError('required')){        
+        <mat-error>
           IsCompleted is <strong>required</strong>
         </mat-error>
+        }
        </mat-form-field>
-       }        
+       }       
 
 
       <!-- Submit Button -->
