@@ -2,23 +2,72 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 100px);
-  padding-top:1rem;
+  padding: 1rem;
+
+  .table-container {
+    flex: 1 0 auto;
+    overflow: auto;
+  }
+
+  mat-paginator {
+    flex-shrink: 0;
+  }
 }
 
-/* Table grows naturally */
-.table-container {
-  flex: 1 0 auto; 
-  overflow: auto;  
-}
-
-/* Paginator stays at the bottom */
-mat-paginator {
-  flex-shrink: 0;
-}
-
+/* Filter row */
 .filter-row {
-  margin:1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: center;
+
   mat-form-field {
-    margin-right:2rem;
+    flex: 1 1 200px; // grow but have a minimum width
+    height:60px;
+  }
+
+  button {
+    height: 40px;
+    flex: 0 1 auto;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .filter-row {
+    flex-direction: column;
+
+    mat-form-field {
+      width: 98%;
+      margin-right: 0;
+      flex: 1 1 60px;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .table-container {
+    overflow-x: auto; // horizontal scroll if table is wider
+  }
+
+  table {
+    min-width: 600px; // so table still displays properly
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .filter-row {
+    gap: 0.5rem;
+
+    mat-form-field {
+      width: 97%;
+    }
+  }
+
+  table {
+    font-size: 0.85rem; // smaller text on tiny screens
   }
 }
