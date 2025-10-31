@@ -3,7 +3,7 @@ import {  MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {  TodosService } from '../../services/todos.service';
-import { Pagination, Todo } from '../../../shared/interfaces/todo.interface';
+import { Todo } from '../../../shared/interfaces/todo.interface';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -15,6 +15,7 @@ import { LoadingComponent } from "../../../shared/components/loading/loading.com
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TodoFormComponent } from '../todo-form/todo-form.component';
 import { RouterLink, RouterModule } from "@angular/router";
+import { Pagination } from '../../../shared/interfaces/pagination.interface';
 
 @Component({
   selector: 'app-todo-list',

@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import environment from '../../../environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Pagination, Todo } from '../../shared/interfaces/todo.interface';
+import { Todo } from '../../shared/interfaces/todo.interface';
 import { Observable } from 'rxjs';
+import { Pagination } from '../../shared/interfaces/pagination.interface';
 
 @Injectable({
   providedIn: 'root'
