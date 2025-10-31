@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   inject,
@@ -23,9 +22,6 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 })
 export class HomeComponent {
   private readonly authService = inject(AuthService);
-
-  private readonly cdr = inject(ChangeDetectorRef);
-
 
   protected readonly menuOpen = signal(false);
 
