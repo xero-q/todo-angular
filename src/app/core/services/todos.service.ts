@@ -34,32 +34,29 @@ export class TodosService {
       return this.httpClient.get<Todo>(`${this.apiUrl}/todos/${todoId}`);
   }
 
-  // createProperty(hostId:number,name:string,location:string,pricePerNight:number,status:number):Observable<Property>{
-  //   const payload = {
-  //     hostId,
-  //     name,
-  //     location,
-  //     pricePerNight,
-  //     status
-  //   };
+  createTodo(title:string,description:string,dueDate:string):Observable<Todo>{
+    const payload = {
+      title,
+      description,
+      dueDate    
+    };
     
-  //   return this.httpClient.post<Property>(`${this.apiUrl}/properties`,payload);
-  // }
+    return this.httpClient.post<Todo>(`${this.apiUrl}/todos`,payload);
+  }
 
    deleteTodo(todoId: number) {
       return this.httpClient.delete(`${this.apiUrl}/todos/${todoId}`);
   }
 
-  // updateProperty(id: number,hostId:number,name:string,location:string,pricePerNight:number,status:number):Observable<Property>{
-  //   const payload = {      
-  //     hostId,
-  //     name,
-  //     location,
-  //     pricePerNight,
-  //     status
-  //   };
+  updateTodo(todoId: number,title:string,description:string,dueDate:string,isCompleted:boolean):Observable<Todo>{
+    const payload = {      
+      title,
+      description,
+      dueDate,
+      isCompleted
+    };
     
-  //   return this.httpClient.put<Property>(`${this.apiUrl}/properties/${id}`,payload);
-  // }
+    return this.httpClient.put<Todo>(`${this.apiUrl}/todos/${todoId}`,payload);
+  }
   
 }

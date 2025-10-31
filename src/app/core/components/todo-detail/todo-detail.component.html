@@ -1,0 +1,46 @@
+
+
+@if (todo()){
+<div class="todo-detail-container" >
+
+ <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+        [routerLink]="'/home'"
+      >
+        Return to List
+      </button>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ todo()!.title }}</mat-card-title>
+      <mat-card-subtitle>Due: {{ todo()!.dueDate | date: 'dd/MM/yyyy hh:mm a' }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><strong>Description:</strong></p>
+      <p>{{ todo()!.description || 'No description provided.' }}</p>
+
+      <mat-divider class="my-3"></mat-divider>
+
+      <p>
+        <strong>Status:</strong>
+        <mat-chip color="{{ todo()!.isCompleted ? 'primary' : 'warn' }}" selected>
+          {{ todo()!.isCompleted ? 'Completed' : 'Pending' }}
+        </mat-chip>
+      </p>
+    </mat-card-content>
+
+    
+  </mat-card>
+</div>
+}
+@else {
+<div class="empty-state">
+    <app-loading></app-loading>
+</div>
+}
+
+
+

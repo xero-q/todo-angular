@@ -11,10 +11,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
-// import { PropertyFormComponent } from '../property-form/property-form.component';
 import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TodoFormComponent } from '../todo-form/todo-form.component';
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-todos',
@@ -26,7 +26,8 @@ import { TodoFormComponent } from '../todo-form/todo-form.component';
     MatInputModule,
     MatSelectModule,
     FormsModule,
-    CommonModule, LoadingComponent],
+    RouterModule,
+    CommonModule, LoadingComponent, RouterLink],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss'
 })
@@ -116,10 +117,10 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo(todoId: number){
-    if (confirm('Are you sure you want to delete this property?')){
+    if (confirm('Are you sure you want to delete this TODO?')){
       this.todosService.deleteTodo(todoId).subscribe({
           next: () => {
-           this.snackbar.open('Property deleted successfully','Info',{
+           this.snackbar.open('TODO deleted successfully','Info',{
               duration:3000,
               panelClass:['snackbar-success']
             }) ; 
@@ -140,29 +141,5 @@ export class TodosComponent implements OnInit {
           },
         });
     };
-  } 
-
-  // synchronizeProperty(id: number){
-  //   this.domainEventsService.createDomainEvent(id,'CREATED','{data:[1,2,3]}').subscribe({
-  //         next: () => {
-  //          this.snackbar.open('Property synchronized successfully','Info',{
-  //             duration:3000,
-  //             panelClass:['snackbar-success']
-  //           }) ;  
-  //         },
-  //         error: (error: any) => {
-  //           const messages = error.error.title ?? error.error.errors.request;
-  //           let messagesString = '';
-  //           if (Array.isArray(messages)) {
-  //             messagesString = messages.join('\n');
-  //           } else {
-  //             messagesString = messages;
-  //           }
-  //           this.snackbar.open(`Error:${messagesString}`,'Error',{
-  //             duration:3000,
-  //             panelClass:['snackbar-error']
-  //           })
-  //         },
-  //       })
-  // }
+  }   
 }

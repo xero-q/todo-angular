@@ -43,91 +43,89 @@ export class TodoFormComponent {
    ngAfterViewInit(){
     if (this.todoId()){
       this.todosService.getOneTodo(this.todoId() ?? 0).subscribe((data:Todo)=>{
-        console.log({data});
         this.todoForm().controls['title'].setValue(data.title);
         this.todoForm().controls['description'].setValue(data.description);
         this.todoForm().controls['dueDate'].setValue(this.toLocalDatetimeInputValue(data.dueDate.toString()));
-        this.todoForm().controls['isCompleted'].setValue(Number(data.isCompleted).toString());
-        
+        this.todoForm().controls['isCompleted'].setValue(Number(data.isCompleted).toString());        
       })
+    }
+    else {
+      this.todoForm().controls['isCompleted'].setValue('0');
     }
   }
 
   onSubmit() {
-    // if (this.propertyForm().valid) {
-    //   this.isSubmitting.set(true);
+    if (this.todoForm().valid) {
+      this.isSubmitting.set(true);
 
-    //   if (!this.id()){ //Creating property
-    //       this.propertiesService
-    //     .createProperty(
-    //       Number(this.propertyForm().get('hostId')!.value ?? ''),
-    //       this.propertyForm().get('name')!.value ?? '',
-    //       this.propertyForm().get('location')!.value ?? '',
-    //       Number(this.propertyForm().get('pricePerNight')!.value ?? ''),
-    //       Number(this.propertyForm().get('status')!.value ?? '')
-    //     )
-    //     .subscribe({
-    //       next: () => {
-    //         this.isSubmitting.set(false);  
-    //         this.closeDialog('CREATED');  
-    //         this.snackbar.open('Property created successfully','Info',{
-    //           duration:3000,
-    //           panelClass:['snackbar-success']
-    //         })        
-    //       },
-    //       error: (error: any) => {
-    //         this.isSubmitting.set(false);
-    //         const messages = error.error.title ?? error.error.errors.request;
-    //         let messagesString = '';
-    //         if (Array.isArray(messages)) {
-    //           messagesString = messages.join('\n');
-    //         } else {
-    //           messagesString = messages;
-    //         }
-    //         this.snackbar.open(`Error:${messagesString}`,'Error',{
-    //           duration:3000,
-    //           panelClass:['snackbar-error']
-    //         })
-    //       },
-    //     });
-    //   }
-    //   else { //Edit property
-    //         this.propertiesService
-    //     .updateProperty(
-    //       this.id() ?? 0,
-    //       Number(this.propertyForm().get('hostId')!.value ?? ''),
-    //       this.propertyForm().get('name')!.value ?? '',
-    //       this.propertyForm().get('location')!.value ?? '',
-    //       Number(this.propertyForm().get('pricePerNight')!.value ?? ''),
-    //       Number(this.propertyForm().get('status')!.value ?? '')
-    //     )
-    //     .subscribe({
-    //       next: () => {
-    //         this.isSubmitting.set(false);  
-    //         this.closeDialog('UPDATWED'); 
-    //         this.snackbar.open('Property updated successfully','Info',{
-    //           duration:3000,
-    //           panelClass:['snackbar-success']
-    //         })         
-    //       },
-    //       error: (error: any) => {
-    //         this.isSubmitting.set(false);
-    //         const messages = error.error.title ?? error.error.errors.request;
-    //         let messagesString = '';
-    //         if (Array.isArray(messages)) {
-    //           messagesString = messages.join('\n');
-    //         } else {
-    //           messagesString = messages;
-    //         }
-    //          this.snackbar.open(`Error:${messagesString}`,'Error',{
-    //           duration:3000,
-    //           panelClass:['snackbar-error']
-    //         })
-    //       },
-    //     });
-    //   }
+      if (!this.todoId()){ //Creating Todo
+          this.todosService
+        .createTodo(
+          this.todoForm().get('title')!.value ?? '',
+          this.todoForm().get('description')!.value ?? '',
+          this.todoForm().get('dueDate')!.value ?? ''
+                 )
+        .subscribe({
+          next: () => {
+            this.isSubmitting.set(false);  
+            this.closeDialog('CREATED');  
+            this.snackbar.open('TODO created successfully','Info',{
+              duration:3000,
+              panelClass:['snackbar-success']
+            })        
+          },
+          error: (error: any) => {
+            this.isSubmitting.set(false);
+            const messages = error.error.title ?? error.error.errors.request;
+            let messagesString = '';
+            if (Array.isArray(messages)) {
+              messagesString = messages.join('\n');
+            } else {
+              messagesString = messages;
+            }
+            this.snackbar.open(`Error:${messagesString}`,'Error',{
+              duration:3000,
+              panelClass:['snackbar-error']
+            })
+          },
+        });
+      }
+      else { //Edit Todo
+            this.todosService
+        .updateTodo(
+          this.todoId() ?? 0,
+          this.todoForm().get('title')!.value ?? '',
+          this.todoForm().get('description')!.value ?? '',
+          this.todoForm().get('dueDate')!.value ?? '',
+          this.todoForm().get('isCompleted')!.value == '1' ? true:false
+        )
+        .subscribe({
+          next: () => {
+            this.isSubmitting.set(false);  
+            this.closeDialog('UPDATED'); 
+            this.snackbar.open('TODO updated successfully','Info',{
+              duration:3000,
+              panelClass:['snackbar-success']
+            })         
+          },
+          error: (error: any) => {
+            this.isSubmitting.set(false);
+            const messages = error.error.title ?? error.error.errors.request;
+            let messagesString = '';
+            if (Array.isArray(messages)) {
+              messagesString = messages.join('\n');
+            } else {
+              messagesString = messages;
+            }
+             this.snackbar.open(`Error:${messagesString}`,'Error',{
+              duration:3000,
+              panelClass:['snackbar-error']
+            })
+          },
+        });
+      }
       
-    // }
+    }
   }
   closeDialog(resp: string | null = null) {
     this.dialogRef.close(resp);

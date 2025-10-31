@@ -29,6 +29,7 @@
 
 
       <!-- Is Completed -->
+      @if (todoId()){
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Is Completed</mat-label>
         <mat-select formControlName="isCompleted">
@@ -39,7 +40,8 @@
         <mat-error *ngIf="todoForm().controls['isCompleted'].hasError('required')">
           IsCompleted is <strong>required</strong>
         </mat-error>
-       </mat-form-field>        
+       </mat-form-field>
+       }        
 
 
       <!-- Submit Button -->

@@ -19,8 +19,8 @@
    <mat-label>Is Completed?</mat-label>
     <mat-select [(ngModel)]="isCompletedFilter">
       <mat-option [value]="''">Select Is Completed</mat-option>
-      <mat-option value="0">No</mat-option>
-      <mat-option value="1">Yes</mat-option>
+      <mat-option value="0">NO</mat-option>
+      <mat-option value="1">YES</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -68,7 +68,8 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let todo">
-        <button matButton="filled" mat-raised-button color="primary" (click)="editTodo(todo.todoId)" class="mr-1">Edit</button>        
+        <button matButton="filled" mat-raised-button color="primary" [routerLink]="'/home/'+todo.todoId" class="mr-1">View Details</button>   
+        <button matButton="filled" mat-raised-button color="primary" (click)="editTodo(todo.todoId)" class="mr-1">Edit</button>             
         <button matButton="filled" mat-raised-button color="warn" (click)="deleteTodo(todo.todoId)">Delete</button>
       </td>
     </ng-container>
