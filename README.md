@@ -1,4 +1,4 @@
-# Todos - Frontend Angular
+# Todos - Angular
 
 ### Instructions
 
